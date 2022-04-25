@@ -27,12 +27,6 @@ pub fn matching_regex(bank_short: (&str, &str), message: String) -> Vec<String> 
     return veky;
 }
 
-// #[get("/hello")]
-async fn hello() -> Result<HttpResponse, Error> {
-    let response = HttpResponse::Ok().body("Hello");
-    Ok(response)
-}
-
 async fn index_banks(body: web::Bytes) -> Result<HttpResponse, Error> {
     let banks = HashMap::from([
         ("ABN", "ABN AMRO"),
@@ -86,7 +80,6 @@ async fn main() -> Result<(), LambdaError> {
             .wrap(middleware::Logger::default()) // enable logger
             .app_data(web::JsonConfig::default().limit(4096)) // <- limit size of the payload (global configuration)
             .service(web::resource("/banks").route(web::post().to(index_banks)))
-            .service(web::resource("/hello").route(web::post().to(hello)))
     };
 
     if is_running_on_lambda() {
