@@ -1,8 +1,6 @@
 use env_logger;
 use json::{self, JsonValue};
-use lambda_web::actix_web::{
-    self, get, middleware, web, App, Error, HttpResponse, HttpServer, Responder,
-};
+use lambda_web::actix_web::{self, middleware, web, App, Error, HttpResponse, HttpServer};
 use lambda_web::{is_running_on_lambda, run_actix_on_lambda, LambdaError};
 use regex::RegexBuilder;
 use serde_json;
@@ -92,10 +90,7 @@ async fn main() -> Result<(), LambdaError> {
         log::info!("Starting HTTP server at http://0.0.0.0:8080");
 
         // Local server
-        HttpServer::new(factory)
-            .bind("0.0.0.0:8080")?
-            .run()
-            .await?;
+        HttpServer::new(factory).bind("0.0.0.0:8080")?.run().await?;
     }
     Ok(())
 }
