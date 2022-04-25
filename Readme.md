@@ -30,12 +30,12 @@ AWS lambda for rust works only using docker images as a way to ship the rust bin
 
 ## Building the binary
 
-The best way to build to build a rust binary without having a development enviroment is using docker:
+The best way to build a rust binary without having a development enviroment is using docker:
 
 ```bash
 docker run --rm --user "0":"0" -v "$PWD":/usr/src/myapp -w /usr/src/myapp rust:1.60 cargo build --release
 ```
-This slower than compiling directly on your laptop but it is easier.
+This is slower than compiling directly on your laptop but it is easier.
 
 ## Building the docker image
 
